@@ -14,7 +14,7 @@ case object Cycle extends Eulerian
 case object Chain extends Eulerian
 case object NonEulerian extends Eulerian
 
-object GraphAlgorithms {
+object GraphAlgorithms extends BlossomAlgorithm{
   def isEulerian[G[_,_]: FiniteGraph, VW, EW](g: G[VW, EW]): Eulerian = {
     g.verticesNums.count(v => g.adjacentVertices(v, true).length % 2 === 1) match {
       case 0 => Cycle
@@ -185,10 +185,6 @@ object GraphAlgorithms {
       minEdges.clear()
     }
     FiniteGraph[G].create(g.vertices, resultEdges)
-  }
-
-  def dfs$[G[_,_]: FiniteGraph, VW, EW](g: G[VW, EW]): Unit = {
-
   }
 
   def showGraph[G[_,_]: FiniteGraph, VW, EW](g: G[VW, EW]): Unit = {

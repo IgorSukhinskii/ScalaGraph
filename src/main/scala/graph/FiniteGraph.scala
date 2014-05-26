@@ -11,6 +11,7 @@ trait FiniteGraph[G[_, _]] {
   type E = (Int, Int)
 
   def create[VW, EW](verts: Seq[VW], es: Seq[((V, V), EW)]): G[VW, EW]
+  def createNonWeighted(verts: Seq[V], es: Seq[(V, V)]): G[Unit, Unit]
 
   def edge[VW, EW](g: G[VW, EW])(v0: V, v1: V): Option[EW]
   def edgeNum[VW, EW](g: G[VW, EW])(v0: V, v1: V): Option[E]
@@ -32,7 +33,9 @@ trait FiniteGraph[G[_, _]] {
   def areAdjacent[VW, EW](g: G[VW, EW])(v0: V, v1: V, to: Boolean = true): Boolean
   def adjacentVertices[VW, EW](g: G[VW, EW])(v: V, to: Boolean = true): Seq[V]
 
-  def setEdge[VW, EW](g: G[VW, EW])(e: E, ew: Option[EW]): Unit
+  def setEdge[VW, EW](g: G[VW, EW])(e: E, ewo: Option[EW]): Unit
+
+  def setVertex[VW, EW](g: G[VW, EW])(v: V, vwo: Option[VW]): Unit
 }
 
 

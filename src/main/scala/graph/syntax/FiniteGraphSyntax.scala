@@ -36,6 +36,7 @@ final class FiniteGraphOps[G[_, _], VW, EW] private[syntax]
   def adjacentVertices = G.adjacentVertices(self) _
 
   def setEdge = G.setEdge(self) _
+  def setVertex = G.setVertex(self) _
 }
 
 // трейт определяет неявное преобразование из любого конечного графа в FiniteGraphOps,
